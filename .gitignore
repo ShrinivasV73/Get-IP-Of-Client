@@ -52,3 +52,4 @@ stylelint.config.js
 *.swn
 *.swo
 *~
+.vercel
