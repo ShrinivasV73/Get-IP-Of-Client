@@ -1,29 +1,26 @@
 document
 	.getElementById('ipForm')
 	.addEventListener('submit', async function (event) {
-		event.preventDefault();
+		event.preventDefault(); // Prevent default form submission
 
-		const formData = {
-			name: document.getElementById('name').value,
-			email: document.getElementById('email').value
-		};
+		const formData = new FormData(this);
 
-		try {
-			const response = await fetch(`http://localhost:3000/api/submit`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify(formData)
-			});
+		// Convert FormData to JSON object
+		const data = {};
+		formData.forEach((value, key) => {
+			data[key] = value;
+		});
 
-			const result = await response.json();
-			console.log(result);
-			alert(
-				'Form submitted successfully. Your IP address is ' + result.ip
-			);
-		} catch (error) {
-			console.error(error);
-			alert('Failed to submit the form');
-		}
+		const response = await fetch('/submit', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(data)
+		});
+
+		const result = await response.json();
+
+		// Display an alert with the message from the server
+		alert(result.message);
 	});

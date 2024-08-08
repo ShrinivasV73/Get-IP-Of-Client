@@ -7,25 +7,34 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Middleware
+app.use(bodyParser.urlencoded({ extended: true })); // For form-urlencoded data
 app.use(bodyParser.json());
 app.use(cors());
 app.use(express.static('public'));
 app.use(requestIp.mw());
 
+// Serve static files and the HTML form
 app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
-app.post('/api/submit', (req, res) => {
+// Handle form submission
+app.post('/submit', (req, res) => {
 	const clientIp = req.clientIp;
-	const { name, email } = req.body;
+	const { name: userName, email: userEmail } = req.body;
 
 	console.log(`Received form submission from IP: ${clientIp}`);
-	console.log(`Name: ${name}, Email: ${email}`);
+	console.log(`Name: ${userName}, Email: ${userEmail}`);
 
-	res.json({ ip: clientIp });
+	// Send response back to the client
+	res.json({
+		success: true,
+		message: `Received form submission from IP: ${clientIp}`
+	});
 });
 
+// Start server
 app.listen(port, () => {
 	console.log(`Server is running on http://localhost:${port}`);
 });
