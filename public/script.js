@@ -9,7 +9,7 @@ document
 		};
 
 		try {
-			const response = await fetch('http://localhost:5500/submit', {
+			const response = await fetch('http://localhost:3000/api/submit', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
@@ -23,7 +23,7 @@ document
 				'Form submitted successfully. Your IP address is ' + result.ip
 			);
 		} catch (error) {
-			console.error('Error submitting form:', error);
+			console.error(error);
 			alert('Failed to submit the form');
 		}
 	});
