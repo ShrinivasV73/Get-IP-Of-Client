@@ -1,0 +1,54 @@
+# Node.js
+node_modules/
+
+# Environment variables
+.env
+
+# Logs
+logs/
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Tailwind CSS
+tailwind.config.js
+
+# Build artifacts
+public/output.css
+
+# Temporary files
+tmp/
+temp/
+
+# Editor directories and files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Dependency directories
+bower_components/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Jest testing
+coverage/
+
+# Linting files
+stylelint.config.js
+.eslintrc.json
+
+# Miscellaneous
+*.bak
+*.swp
+*.swm
+*.swx
+*.swn
+*.swo
+*~
